@@ -1,12 +1,8 @@
-FROM runpod/worker-comfyui:4.0.0-base
+FROM runpod/worker-comfyui:5.7.1-base
 
-RUN cd /comfyui && git pull origin master
-
-RUN cd /comfyui/custom_nodes && \
-    git clone https://github.com/rgthree/rgthree-comfy.git && \
-    git clone https://github.com/yolain/ComfyUI-Easy-Use.git && \
-    git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git && \
-    git clone https://github.com/Jonseed/ComfyUI-Detail-Daemon.git
-
-RUN cd /comfyui/custom_nodes/ComfyUI-Easy-Use && \
-    pip install -r requirements.txt
+# Install custom nodes via comfy-node-install (built into 5.x images)
+RUN comfy-node-install \
+    rgthree-comfy \
+    comfyui-easy-use \
+    comfyui-custom-scripts \
+    comfyui-detail-daemon
