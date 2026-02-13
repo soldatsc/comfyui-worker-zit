@@ -1,5 +1,7 @@
 FROM runpod/worker-comfyui:4.0.0-base
 
+RUN cd /comfyui && git pull origin master
+
 RUN cd /comfyui/custom_nodes && \
     git clone https://github.com/rgthree/rgthree-comfy.git && \
     git clone https://github.com/yolain/ComfyUI-Easy-Use.git && \
